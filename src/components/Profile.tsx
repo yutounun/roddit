@@ -9,7 +9,7 @@ function Profile() {
     );
   }
 
-  return <div>From Client Component: you're not signed in</div>;
+  return <div>From Client Component: you`&apos;`re not signed in</div>;
 }
 
 export default Profile;
