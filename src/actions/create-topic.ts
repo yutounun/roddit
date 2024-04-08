@@ -27,6 +27,11 @@ export async function createTopic(
   formState: CreateTopicFormState,
   formData: FormData
 ): Promise<CreateTopicFormState> {
+  console.log(
+    "title: formData.get",
+    formData.get("name"),
+    formData.get("description")
+  );
   const result = createTopicSchema.safeParse({
     name: formData.get("name"),
     description: formData.get("description"),
@@ -38,6 +43,12 @@ export async function createTopic(
       errors: {
         _form: ["You must be signed in to do this."],
       },
+    };
+  }
+
+  if (!result.success) {
+    return {
+      errors: result.error.flatten().fieldErrors,
     };
   }
 
@@ -65,11 +76,6 @@ export async function createTopic(
     }
   }
 
-  if (!result.success) {
-    return {
-      errors: result.error.flatten().fieldErrors,
-    };
-  }
   revalidatePath("/");
   redirect(paths.topicShow(topic.slug));
 

@@ -12,38 +12,37 @@ import * as actions from "@/actions/index";
 import { useFormState } from "react-dom";
 import FormButton from "../common/form-button";
 
-type TopicCreateFormProps = {
-  slug: string;
-};
-
-function TopicCreateForm({ slug }: TopicCreateFormProps) {
-  const [formState, action] = useFormState(actions.createPost, {
-    errors: {},
-  });
+function PostCreateForm({ slug }: { slug: string }) {
+  const [formState, action] = useFormState(
+    actions.createPost.bind(null, slug),
+    {
+      errors: {},
+    }
+  );
   return (
     <Popover placement="left">
       <PopoverTrigger>
-        <Button color="primary">Create a Topic</Button>
+        <Button color="primary">Create a Post</Button>
       </PopoverTrigger>
       <PopoverContent>
         <form action={action}>
           <div className="flex flex-col gap-4 p-4 w-80">
-            <h3 className="text-lg">Create a Topic</h3>
+            <h3 className="text-lg">Create a Post</h3>
             <Input
-              name="name"
-              label="Name"
+              name="title"
+              label="Title"
               labelPlacement="outside"
-              placeholder="Name"
-              isInvalid={!!formState.errors.name}
-              errorMessage={formState.errors.name?.join(", ")}
+              placeholder="Title"
+              isInvalid={!!formState.errors.title}
+              errorMessage={formState.errors.title?.join(", ")}
             />
             <Textarea
-              name="description"
-              label="Description"
+              name="content"
+              label="Content"
               labelPlacement="outside"
-              placeholder="Describe your topic"
-              isInvalid={!!formState.errors.description}
-              errorMessage={formState.errors.description?.join(", ")}
+              placeholder="Describe your post"
+              isInvalid={!!formState.errors.content}
+              errorMessage={formState.errors.content?.join(", ")}
             />
 
             {formState.errors._form && (
@@ -52,7 +51,7 @@ function TopicCreateForm({ slug }: TopicCreateFormProps) {
               </div>
             )}
 
-            <FormButton>Save</FormButton>
+            <FormButton>Create Post</FormButton>
           </div>
         </form>
       </PopoverContent>
@@ -60,4 +59,4 @@ function TopicCreateForm({ slug }: TopicCreateFormProps) {
   );
 }
 
-export default TopicCreateForm;
+export default PostCreateForm;
