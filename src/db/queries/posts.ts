@@ -8,7 +8,6 @@ export type PostWithData = Post & {
 };
 
 export function fetchPostsBySearchTerm(term: string): Promise<PostWithData[]> {
-  console.log("🚀 ~ fetchPostsBySearchTerm ~ term:", term);
   return db.post.findMany({
     include: {
       topic: {
