@@ -5,8 +5,10 @@ import paths from "@/paths";
 interface PostListProps {
   fetchData: () => Promise<PostWithData[]>;
 }
+
 export default async function PostList({ fetchData }: PostListProps) {
   const posts = await fetchData();
+
   const renderedPosts = posts.map((post) => {
     const topicSlug = post.topic.slug;
 
