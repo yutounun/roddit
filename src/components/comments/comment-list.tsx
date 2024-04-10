@@ -4,7 +4,6 @@ interface CommentListProps {
   postId: string;
 }
 
-// TODO: Get a list of comments from somewhere
 export default async function CommentList({ postId }: CommentListProps) {
   const comments = await fetchCommentByPostId(postId);
 

@@ -13,9 +13,11 @@ const createPostSchema = z.object({
 });
 
 interface CreatePostFormState {
-  title?: string[];
-  content?: string[];
-  _form?: string;
+  errors: {
+    title?: string[];
+    content?: string[];
+    _form?: string[];
+  };
 }
 
 export async function createPost(
@@ -93,8 +95,4 @@ export async function createPost(
   return {
     errors: {},
   };
-
-  // TODO: validate
-
-  // TODO: revalidate the homepage
 }

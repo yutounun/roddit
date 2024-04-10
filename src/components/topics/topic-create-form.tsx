@@ -12,12 +12,8 @@ import * as actions from "@/actions/index";
 import { useFormState } from "react-dom";
 import FormButton from "../common/form-button";
 
-type TopicCreateFormProps = {
-  slug: string;
-};
-
-function TopicCreateForm({ slug }: TopicCreateFormProps) {
-  const [formState, action] = useFormState(actions.createPost, {
+function TopicCreateForm() {
+  const [formState, action] = useFormState(actions.createTopic, {
     errors: {},
   });
   return (

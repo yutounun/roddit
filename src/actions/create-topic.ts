@@ -18,9 +18,11 @@ const createTopicSchema = z.object({
 });
 
 interface CreateTopicFormState {
-  name?: string[];
-  description?: string[];
-  _form?: string;
+  errors: {
+    name?: string[];
+    description?: string[];
+    _form?: string[];
+  };
 }
 
 export async function createTopic(
@@ -77,8 +79,4 @@ export async function createTopic(
   return {
     errors: {},
   };
-
-  // TODO: validate
-
-  // TODO: revalidate the homepage
 }

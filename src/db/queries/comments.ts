@@ -3,7 +3,7 @@ import { db } from "@/db/index";
 import type { Comment } from "@prisma/client";
 
 export type CommentWithAuthor = Comment & {
-  user: { name: string; image: string | null };
+  user: { name: string | null; image: string | null };
 };
 
 export const fetchCommentByPostId = cache(
